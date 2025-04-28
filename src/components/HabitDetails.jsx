@@ -51,32 +51,32 @@ const HabitDetails = ({ habit, habit: { details } }) => {
   }
   return (
     <Row>
-      {details.map((detail) => (
-        <Fragment key={detail.day}>
-          <Col >
-            <p className='day-headings'>{detail.day}</p>
+  {details
+    .filter((detail) => detail.day) // ⬅️ only keep day entries, skip dates
+    .map((detail) => (
+      <Fragment key={detail.day}>
+        <Col>
+          <p className="day-headings">{detail.day}</p>
 
-            {detail.status === 'none' && (
-              <i
-                className='fa-solid fa-check'
-                onClick={() => checkStatusHandler([habit.title, detail.day])}></i>
-            )}
-
-            {detail.status === 'done' && (
-              <i
-                className=' fa-lg fa-solid fa-circle-check done'
-                onClick={() => doneStatusHandler([habit.title, detail.day])}></i>
-            )}
-
-            {detail.status === 'fail' && (
-              <i
-                className=' fa-lg fa-solid fa-circle-xmark fail'
-                onClick={() => failStatusHandler([habit.title, detail.day])}></i>
-            )}
-          </Col>
-        </Fragment>
-      ))}
-    </Row>
+          {detail.status === 'none' && (
+            <i
+              className="fa-solid fa-check"
+              onClick={() => checkStatusHandler([habit.title, detail.day])}></i>
+          )}
+          {detail.status === 'done' && (
+            <i
+              className="fa-lg fa-solid fa-circle-check done"
+              onClick={() => doneStatusHandler([habit.title, detail.day])}></i>
+          )}
+          {detail.status === 'fail' && (
+            <i
+              className="fa-lg fa-solid fa-circle-xmark fail"
+              onClick={() => failStatusHandler([habit.title, detail.day])}></i>
+          )}
+        </Col>
+      </Fragment>
+    ))}
+</Row>
   )
 }
 
